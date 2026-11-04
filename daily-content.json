@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-04",
+  "name": "The Biology Lab Mystery",
+  "category": "BIOLOGY",
+  "reward": 30,
+  "tip": "Remember: producers make their own food, while consumers obtain energy by eating.",
+  "questions": [
+    {
+      "q": "Which part of a plant mainly absorbs water from the soil?",
+      "a": [
+        "Roots",
+        "Flowers",
+        "Leaves"
+      ],
+      "c": 0,
+      "why": "Root hairs absorb water and mineral ions from the soil."
+    },
+    {
+      "q": "What is the main function of red blood cells?",
+      "a": [
+        "Fight infection",
+        "Carry oxygen",
+        "Digest food"
+      ],
+      "c": 1,
+      "why": "Haemoglobin in red blood cells carries oxygen around the body."
+    },
+    {
+      "q": "Which organisms break down dead material?",
+      "a": [
+        "Decomposers",
+        "Herbivores",
+        "Producers"
+      ],
+      "c": 0,
+      "why": "Fungi and bacteria are important decomposers in ecosystems."
+    }
+  ]
+}
