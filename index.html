@@ -150,6 +150,33 @@ const data={
  {q:"Which gas do plants absorb during photosynthesis?",a:["Oxygen","Nitrogen","Carbon dioxide"],c:2,why:"Plants take in carbon dioxide and use light energy to make glucose."},
  {q:"Which is the largest ocean on Earth?",a:["Pacific Ocean","Indian Ocean","Arctic Ocean"],c:0,why:"The Pacific Ocean is the largest."}]}
 };
+async function loadDailyContent(){
+ try{
+  const response=await fetch("./daily-content.json?date="+new Date().toISOString().slice(0,10),{cache:"no-store"});
+  if(!response.ok)throw new Error("Daily content unavailable");
+  const daily=await response.json();
+  if(!daily||!Array.isArray(daily.questions)||!daily.questions.length)return;
+  data.daily={name:daily.name,category:daily.category,reward:daily.reward,questions:daily.questions};
+  const hero=document.querySelector(".hero");
+  if(hero){
+   hero.querySelector(".eyebrow").textContent="✦ DAILY CHALLENGE · 3 QUESTIONS";
+   hero.querySelector("h2").textContent=daily.name;
+   hero.querySelector("p").textContent="A fresh challenge is ready. Test what you know and earn XP.";
+   hero.querySelector("button").setAttribute("onclick","startCase('daily')");
+   hero.querySelector("button").textContent="Play today's challenge →";
+  }
+  const battleCard=document.querySelector('.case[onclick="startCase(\'battle\')"]');
+  if(battleCard){
+   battleCard.querySelector(".tag").textContent=daily.category;
+   battleCard.querySelector("h3").textContent=daily.name;
+   battleCard.querySelector("p").textContent="Today's rotating challenge. New questions every day.";
+   battleCard.querySelector(".case-meta span:last-child").textContent="+"+daily.reward+" XP";
+   battleCard.setAttribute("onclick","startCase('daily')");
+  }
+  const tips=document.querySelectorAll("#missions .card .empty");
+  if(tips.length>1)tips[tips.length-1].textContent=daily.tip||"Try explaining today's answers in your own words.";
+ }catch(error){console.info("Using built-in MindQuest challenges until daily content is available.",error)}
+}
 let state={xp:0,solved:[],completedToday:false};
 try{const saved=JSON.parse(localStorage.getItem("mindquest-state"));if(saved)state={...state,...saved}}catch(e){}
 let current=null,index=0,correct=0,answered=false;
@@ -225,7 +252,7 @@ async function initAuth(){
  supabaseClient.auth.onAuthStateChange((_event,session)=>{if(!session){currentUser=null;document.getElementById("authScreen").classList.remove("auth-hidden");showAuthPanel("authForm")}});
 }
 
-initAuth();
+loadDailyContent();\ninitAuth();
 document.getElementById("today").textContent=new Date().toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric"});updateStats();
 if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}))}
 </script>
