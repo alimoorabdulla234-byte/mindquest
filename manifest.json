@@ -1,0 +1,10 @@
+{
+  "name": "MindQuest — Learn Different",
+  "short_name": "MindQuest",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#080d1b",
+  "theme_color": "#0a1022",
+  "description": "Turn learning into mysteries, missions and brain battles.",
+  "icons": []
+}
