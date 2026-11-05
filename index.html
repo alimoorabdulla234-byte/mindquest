@@ -185,7 +185,73 @@ function rank(){return state.xp>=500?"Mastermind":state.xp>=250?"Strategist":sta
 function updateStats(){let level=Math.floor(state.xp/100)+1,into=state.xp%100;document.getElementById("xp").textContent=state.xp;document.getElementById("topXP").textContent=state.xp;document.getElementById("solved").textContent=state.solved.length;document.getElementById("rank").textContent=rank();document.getElementById("profileRank").textContent=rank();document.getElementById("profileXP").textContent=state.xp+" XP";document.getElementById("levelLabel").textContent="Level "+level;document.getElementById("progressText").textContent=into+" / 100 XP";document.getElementById("progressBar").style.width=into+"%";let done=state.completedToday?100:0;["missionBar","missionBar2"].forEach(id=>document.getElementById(id).style.width=done+"%");["missionProgress","missionProgress2"].forEach(id=>document.getElementById(id).textContent=state.completedToday?"1 / 1":"0 / 1");document.getElementById("achievement").textContent=state.solved.length?"🏆 First Case — unlocked!":"🔒 First Case — solve your first challenge to unlock."}
 function go(screen){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById(screen).classList.add("active");document.querySelectorAll(".nav").forEach(n=>n.classList.toggle("active",n.dataset.screen===screen));window.scrollTo({top:0,behavior:"smooth"})}
 document.querySelectorAll(".nav").forEach(n=>n.addEventListener("click",()=>go(n.dataset.screen)));
-function startCase(id){current=data[id];index=0;correct=0;go("quiz");renderQuestion()}
+
+function freshQuestion(){
+ const rand=(min,max)=>Math.floor(Math.random()*(max-min+1))+min;
+ const pick=arr=>arr[rand(0,arr.length-1)];
+ const make=(q,correct,wrong,why)=>{
+  const options=[{v:String(correct),ok:true},...wrong.map(v=>({v:String(v),ok:false}))];
+  for(let i=options.length-1;i>0;i--){const j=rand(0,i);[options[i],options[j]]=[options[j],options[i]]}
+  return {q,a:options.map(x=>x.v),c:options.findIndex(x=>x.ok),why};
+ };
+ const type=rand(0,7);
+ if(type===0){
+  const a=rand(12,89),b=rand(11,79),ans=a+b;
+  return make(`A shop sells ${a} notebooks in the morning and ${b} in the afternoon. How many does it sell altogether?`,ans,[ans+rand(2,9),Math.abs(a-b),ans+10],`Add the two amounts: ${a} + ${b} = ${ans}.`);
+ }
+ if(type===1){
+  const a=rand(3,12),b=rand(3,12),ans=a*b;
+  return make(`A rectangle is ${a} cm long and ${b} cm wide. What is its area?`,ans+` cm²`,[`${ans+a} cm²`,`${a+b} cm²`,`${ans-b} cm²`],`Area = length × width, so ${a} × ${b} = ${ans} cm².`);
+ }
+ if(type===2){
+  const base=rand(4,18)*10,p=pick([10,15,20,25,30]),ans=base*p/100;
+  return make(`What is ${p}% of ${base}?`,ans,[ans+5,ans*2,base-ans],`${p}% means ${p}/100, so the answer is ${ans}.`);
+ }
+ if(type===3){
+  const a=rand(2,9),b=rand(2,9),c=rand(2,9),ans=a*b+c;
+  return make(`Work this out: ${a} × ${b} + ${c}`,ans,[a*(b+c),ans+ a,ans-c],`Multiply first: ${a} × ${b} = ${a*b}, then add ${c} to get ${ans}.`);
+ }
+ if(type===4){
+  const qs=[
+   [`Which process do plants use to make glucose using light energy?`,"Photosynthesis",["Respiration","Digestion","Evaporation"],"Photosynthesis uses light energy, carbon dioxide and water to make glucose."],
+   [`Which particle has a negative electrical charge?`,"Electron",["Proton","Neutron","Nucleus"],"Electrons have a negative charge; protons are positive and neutrons are neutral."],
+   [`What is the change from a liquid to a gas called?`,"Evaporation",["Freezing","Condensation","Melting"],"Evaporation is the change from liquid to gas."],
+   [`Which organ pumps blood around the human body?`,"Heart",["Lungs","Kidneys","Stomach"],"The heart pumps blood through the circulatory system."],
+   [`Which gas do humans need for aerobic respiration?`,"Oxygen",["Carbon dioxide","Helium","Hydrogen"],"Cells use oxygen to release energy from glucose during aerobic respiration."]
+  ];const x=pick(qs);return make(...x);
+ }
+ if(type===5){
+  const qs=[
+   ["Which line of latitude is at 0 degrees?","The Equator",["Tropic of Cancer","Arctic Circle","Prime Meridian"],"The Equator is the 0° line of latitude."],
+   ["Which is the largest continent by area?","Asia",["Africa","Europe","South America"],"Asia is the largest continent."],
+   ["In which direction does the Sun appear to rise?","East",["West","North","South"],"Earth rotates from west to east, so the Sun appears to rise in the east."],
+   ["What does a map key explain?","The symbols on a map",["The map's age","The distance to space","The weather forecast"],"A map key explains what the symbols and colours represent."]
+  ];const x=pick(qs);return make(...x);
+ }
+ if(type===6){
+  const qs=[
+   ["Choose the correct spelling:","Necessary",["Neccessary","Necesary","Neccesary"],"Necessary is spelled with one c and two s letters."],
+   ["Which word is an adjective?","Bright",["Quickly","Run","Happiness"],"Bright describes a noun, so it is an adjective."],
+   ["Which punctuation mark ends a direct question?","Question mark (?)",["Comma (,)","Full stop (.)","Colon (:)"],"A direct question ends with a question mark."],
+   ["What is the past tense of 'teach'?","Taught",["Teached","Teaching","Teachen"],"Teach is an irregular verb; its past tense is taught."]
+  ];const x=pick(qs);return make(...x);
+ }
+ const n=rand(3,15),ans=n*n;
+ return make(`A square has sides of ${n} cm. What is its area?`,ans+` cm²`,[`${n*4} cm²`,`${ans+n} cm²`,`${n*2} cm²`],`Area of a square = side × side = ${n} × ${n} = ${ans} cm².`);
+}
+function generateFreshChallenge(){
+ const seen=JSON.parse(localStorage.getItem("mindquest-seen-questions")||"[]");
+ const questions=[];
+ for(let i=0;i<3;i++){
+  let q,tries=0;
+  do{q=freshQuestion();tries++}while((seen.includes(q.q)||questions.some(x=>x.q===q.q))&&tries<300);
+  questions.push(q);seen.push(q.q);
+ }
+ localStorage.setItem("mindquest-seen-questions",JSON.stringify(seen.slice(-5000)));
+ return {name:"Fresh Brain Challenge",category:"MIXED KNOWLEDGE",reward:30,questions};
+}
+
+function startCase(id){current=(id==="daily"||id==="battle")?generateFreshChallenge():data[id];index=0;correct=0;go("quiz");renderQuestion()}
 function renderQuestion(){answered=false;let q=current.questions[index];document.getElementById("quizCategory").textContent=current.category+" · "+current.name;document.getElementById("questionCount").textContent=`Question ${index+1} of ${current.questions.length}`;document.getElementById("quizReward").textContent="+"+current.reward+" XP";document.getElementById("quizBar").style.width=(index/current.questions.length*100)+"%";document.getElementById("question").textContent=q.q;document.getElementById("feedback").textContent="";document.getElementById("nextBtn").style.display="none";let box=document.getElementById("answers");box.innerHTML="";q.a.forEach((a,i)=>{let b=document.createElement("button");b.className="answer";b.textContent=String.fromCharCode(65+i)+". "+a;b.onclick=()=>choose(i,b);box.appendChild(b)})}
 function choose(i,button){if(answered)return;answered=true;let q=current.questions[index];[...document.querySelectorAll(".answer")].forEach((b,j)=>{b.disabled=true;if(j===q.c)b.classList.add("correct")});if(i===q.c){correct++;document.getElementById("feedback").textContent="✓ Correct! "+q.why}else{button.classList.add("wrong");document.getElementById("feedback").textContent="Not quite. "+q.why}document.getElementById("nextBtn").style.display="inline-block";document.getElementById("nextBtn").textContent=index===current.questions.length-1?"Finish case ✓":"Next question →"}
 function nextQuestion(){if(index<current.questions.length-1){index++;renderQuestion();return}let perfect=correct===current.questions.length;let earned=Math.round(current.reward*(correct/current.questions.length));let key=Object.keys(data).find(k=>data[k]===current);if(!state.solved.includes(key))state.solved.push(key);state.xp+=earned;state.completedToday=true;save();document.getElementById("question").textContent=perfect?"Case cracked. Outstanding work!":"Investigation complete!";document.getElementById("answers").innerHTML=`<div class="card"><h2>${correct} / ${current.questions.length} correct</h2><p class="empty">You earned ${earned} XP. ${perfect?"Perfect investigation!":"Keep practising and you'll master it."}</p></div>`;document.getElementById("feedback").textContent="Your rank: "+rank();document.getElementById("quizBar").style.width="100%";document.getElementById("nextBtn").textContent="Back to dashboard";document.getElementById("nextBtn").onclick=()=>{document.getElementById("nextBtn").onclick=nextQuestion;go("home")};document.getElementById("nextBtn").style.display="inline-block";toast("+"+earned+" XP earned!")}
