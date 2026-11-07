@@ -1,39 +1,39 @@
 {
-  "date": "2026-11-06",
-  "name": "The Energy Investigation",
-  "category": "PHYSICS",
+  "date": "2026-11-07",
+  "name": "The Logic Detective",
+  "category": "LOGIC",
   "reward": 30,
-  "tip": "Energy is transferred between stores; it is not created or destroyed.",
+  "tip": "A good conclusion must be supported by the clues, not just by a guess.",
   "questions": [
     {
-      "q": "What type of energy is stored in a stretched spring?",
+      "q": "All squares are rectangles. A shape is a square. What must be true?",
       "a": [
-        "Elastic potential",
-        "Sound",
-        "Nuclear"
+        "It is a rectangle",
+        "It is a circle",
+        "It has 3 sides"
       ],
       "c": 0,
-      "why": "A stretched or compressed spring stores elastic potential energy."
+      "why": "If every square is a rectangle, every square has the properties of a rectangle."
     },
     {
-      "q": "Which material is usually a good electrical conductor?",
+      "q": "A bus leaves at 09:20 and arrives at 10:05. How long is the journey?",
       "a": [
-        "Rubber",
-        "Copper",
-        "Plastic"
+        "35 minutes",
+        "45 minutes",
+        "55 minutes"
       ],
       "c": 1,
-      "why": "Copper is a metal and allows electric charge to flow easily."
+      "why": "From 09:20 to 10:00 is 40 minutes, then 5 more minutes."
     },
     {
-      "q": "What happens to a light ray when it reflects?",
+      "q": "Which number completes the pattern: 3, 6, 12, 24, __?",
       "a": [
-        "It bends through a lens",
-        "It bounces off a surface",
-        "It disappears"
+        "30",
+        "36",
+        "48"
       ],
-      "c": 1,
-      "why": "Reflection is when light bounces off a surface."
+      "c": 2,
+      "why": "Each number is doubled, so 24 × 2 = 48."
     }
   ]
 }
