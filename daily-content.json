@@ -1,39 +1,39 @@
 {
-  "date": "2026-11-07",
-  "name": "The Logic Detective",
-  "category": "LOGIC",
+  "date": "2026-11-08",
+  "name": "The Solar System Signal",
+  "category": "SCIENCE",
   "reward": 30,
-  "tip": "A good conclusion must be supported by the clues, not just by a guess.",
+  "tip": "Explain a science idea in your own words. If you can teach it, you probably understand it.",
   "questions": [
     {
-      "q": "All squares are rectangles. A shape is a square. What must be true?",
+      "q": "Which planet has the largest number of confirmed moons?",
       "a": [
-        "It is a rectangle",
-        "It is a circle",
-        "It has 3 sides"
-      ],
-      "c": 0,
-      "why": "If every square is a rectangle, every square has the properties of a rectangle."
-    },
-    {
-      "q": "A bus leaves at 09:20 and arrives at 10:05. How long is the journey?",
-      "a": [
-        "35 minutes",
-        "45 minutes",
-        "55 minutes"
+        "Earth",
+        "Saturn",
+        "Mercury"
       ],
       "c": 1,
-      "why": "From 09:20 to 10:00 is 40 minutes, then 5 more minutes."
+      "why": "Saturn currently has the most confirmed moons."
     },
     {
-      "q": "Which number completes the pattern: 3, 6, 12, 24, __?",
+      "q": "What force keeps planets in orbit around the Sun?",
       "a": [
-        "30",
-        "36",
-        "48"
+        "Gravity",
+        "Friction",
+        "Magnetism"
+      ],
+      "c": 0,
+      "why": "The Sun's gravity keeps planets moving in their orbits."
+    },
+    {
+      "q": "Which layer of Earth is liquid and helps create its magnetic field?",
+      "a": [
+        "Crust",
+        "Inner core",
+        "Outer core"
       ],
       "c": 2,
-      "why": "Each number is doubled, so 24 × 2 = 48."
+      "why": "Movement in the liquid outer core helps generate Earth's magnetic field."
     }
   ]
 }
