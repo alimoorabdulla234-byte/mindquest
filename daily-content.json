@@ -1,39 +1,39 @@
 {
-  "date": "2026-11-09",
-  "name": "The Fraction Vault",
-  "category": "MATHS",
+  "date": "2026-11-10",
+  "name": "The Geography Compass",
+  "category": "GEOGRAPHY",
   "reward": 30,
-  "tip": "For fractions, make denominators the same before adding or subtracting.",
+  "tip": "Use a compass rose to check directions before describing a route.",
   "questions": [
     {
-      "q": "What is 3/4 of 20?",
+      "q": "Which line divides Earth into the Northern and Southern Hemispheres?",
       "a": [
-        "12",
-        "15",
-        "16"
+        "Prime Meridian",
+        "Equator",
+        "Tropic of Cancer"
       ],
       "c": 1,
-      "why": "20 ÷ 4 = 5, and 5 × 3 = 15."
+      "why": "The Equator is at 0° latitude and divides the two hemispheres."
     },
     {
-      "q": "Which fraction is equal to 0.5?",
+      "q": "What does a map scale help you calculate?",
       "a": [
-        "1/4",
-        "1/2",
-        "3/4"
-      ],
-      "c": 1,
-      "why": "One half is the same as 0.5 or 50%."
-    },
-    {
-      "q": "What is 2/3 + 1/3?",
-      "a": [
-        "1",
-        "2/6",
-        "3/6"
+        "Real-world distance",
+        "Population",
+        "Temperature"
       ],
       "c": 0,
-      "why": "The denominators match, so add the numerators: 3/3 = 1."
+      "why": "A scale compares map distance with actual distance."
+    },
+    {
+      "q": "Which direction is opposite to south-east?",
+      "a": [
+        "North-east",
+        "South-west",
+        "North-west"
+      ],
+      "c": 2,
+      "why": "The opposite direction across the compass is north-west."
     }
   ]
 }
