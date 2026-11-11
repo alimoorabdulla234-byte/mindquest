@@ -1,39 +1,39 @@
 {
-  "date": "2026-11-10",
-  "name": "The Geography Compass",
-  "category": "GEOGRAPHY",
+  "date": "2026-11-11",
+  "name": "The Biology Lab Mystery",
+  "category": "BIOLOGY",
   "reward": 30,
-  "tip": "Use a compass rose to check directions before describing a route.",
+  "tip": "Remember: producers make their own food, while consumers obtain energy by eating.",
   "questions": [
     {
-      "q": "Which line divides Earth into the Northern and Southern Hemispheres?",
+      "q": "Which part of a plant mainly absorbs water from the soil?",
       "a": [
-        "Prime Meridian",
-        "Equator",
-        "Tropic of Cancer"
-      ],
-      "c": 1,
-      "why": "The Equator is at 0° latitude and divides the two hemispheres."
-    },
-    {
-      "q": "What does a map scale help you calculate?",
-      "a": [
-        "Real-world distance",
-        "Population",
-        "Temperature"
+        "Roots",
+        "Flowers",
+        "Leaves"
       ],
       "c": 0,
-      "why": "A scale compares map distance with actual distance."
+      "why": "Root hairs absorb water and mineral ions from the soil."
     },
     {
-      "q": "Which direction is opposite to south-east?",
+      "q": "What is the main function of red blood cells?",
       "a": [
-        "North-east",
-        "South-west",
-        "North-west"
+        "Fight infection",
+        "Carry oxygen",
+        "Digest food"
       ],
-      "c": 2,
-      "why": "The opposite direction across the compass is north-west."
+      "c": 1,
+      "why": "Haemoglobin in red blood cells carries oxygen around the body."
+    },
+    {
+      "q": "Which organisms break down dead material?",
+      "a": [
+        "Decomposers",
+        "Herbivores",
+        "Producers"
+      ],
+      "c": 0,
+      "why": "Fungi and bacteria are important decomposers in ecosystems."
     }
   ]
 }
