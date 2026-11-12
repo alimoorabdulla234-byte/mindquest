@@ -1,39 +1,39 @@
 {
-  "date": "2026-11-11",
-  "name": "The Biology Lab Mystery",
-  "category": "BIOLOGY",
+  "date": "2026-11-12",
+  "name": "The Algebra Lock",
+  "category": "MATHS",
   "reward": 30,
-  "tip": "Remember: producers make their own food, while consumers obtain energy by eating.",
+  "tip": "Collect like terms only when their variable parts match exactly.",
   "questions": [
     {
-      "q": "Which part of a plant mainly absorbs water from the soil?",
+      "q": "Simplify: 4x + 3x",
       "a": [
-        "Roots",
-        "Flowers",
-        "Leaves"
-      ],
-      "c": 0,
-      "why": "Root hairs absorb water and mineral ions from the soil."
-    },
-    {
-      "q": "What is the main function of red blood cells?",
-      "a": [
-        "Fight infection",
-        "Carry oxygen",
-        "Digest food"
+        "7",
+        "7x",
+        "12x"
       ],
       "c": 1,
-      "why": "Haemoglobin in red blood cells carries oxygen around the body."
+      "why": "Add the coefficients: 4x + 3x = 7x."
     },
     {
-      "q": "Which organisms break down dead material?",
+      "q": "Solve: x + 6 = 14",
       "a": [
-        "Decomposers",
-        "Herbivores",
-        "Producers"
+        "6",
+        "8",
+        "20"
       ],
-      "c": 0,
-      "why": "Fungi and bacteria are important decomposers in ecosystems."
+      "c": 1,
+      "why": "Subtract 6 from both sides to get x = 8."
+    },
+    {
+      "q": "Expand: 3(y + 2)",
+      "a": [
+        "3y + 2",
+        "y + 6",
+        "3y + 6"
+      ],
+      "c": 2,
+      "why": "Multiply both terms by 3: 3y + 6."
     }
   ]
 }
